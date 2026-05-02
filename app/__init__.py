@@ -13,6 +13,11 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
+
+    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+        "pool_pre_ping": True,
+        "pool_recycle": 280,
+    }
     login_manager.init_app(app)
     bcrypt.init_app(app)
 

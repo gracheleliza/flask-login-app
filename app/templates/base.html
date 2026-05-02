@@ -20,7 +20,10 @@
     <span class="navbar-brand mb-0 h1">Flask App</span>
 
     {% if current_user.is_authenticated %}
-        <a href="/logout" class="btn btn-outline-dark btn-sm">Logout</a>
+        <div>
+            <span class="me-3">👤 {{ current_user.username }}</span>
+            <a href="/logout" class="btn btn-outline-dark btn-sm">Logout</a>
+        </div>
     {% endif %}
 </nav>
 

@@ -47,11 +47,16 @@ def login():
 @auth.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html', user=current_user)
+    user_count = User.query.count()
+    return render_template('dashboard.html', user=current_user, user_count=user_count)
 
 
 @auth.route('/logout')
 @login_required
 def logout():
-    logout_user()
+    try:
+        logout_user()
+    except Exception as e:
+        print("Logout error:", e)
+
     return redirect(url_for('auth.login'))
